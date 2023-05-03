@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://mr2mhc8wsqiv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_pkkro"]
+[ext_resource type="ArrayMesh" uid="uid://b6dhjo4sakknk" path="res://player.obj" id="2_mdw1u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbygy"]
+size = Vector3(2.52066, 3.88909, 2.65692)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_pkkro")
+metadata/_edit_group_ = true
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46035, 0)
+mesh = ExtResource("2_mdw1u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89257, 0)
+shape = SubResource("BoxShape3D_lbygy")

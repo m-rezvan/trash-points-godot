@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhue11vwybt1j"]
+
+[ext_resource type="PackedScene" uid="uid://dkbfkreqmx8gf" path="res://counter.tscn" id="1_vkyy5"]
+
+[sub_resource type="GDScript" id="GDScript_gjq55"]
+script/source = "extends NinePatchRect
+var value
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+
+func _on_area_3d_2_on_trash_collected(trash_weight):
+	$Value.text = str(int($Value.text) +trash_weight)
+	value = int($Value.text)
+
+
+
+
+
+func _on_points_on_points_convert():
+	value = 0
+	$Value.text = str(value)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_ec1ot"]
+font_size = 39
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Trash" parent="." instance=ExtResource("1_vkyy5")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 565.0
+offset_right = 419.0
+offset_bottom = 652.0
+script = SubResource("GDScript_gjq55")
+
+[node name="Category" parent="Trash" index="0"]
+text = "Trash:"
+
+[node name="Value" parent="Trash" index="1"]
+offset_left = 145.0
+offset_top = 16.0
+offset_right = 271.0
+offset_bottom = 74.0
+
+[node name="Label" type="Label" parent="Trash"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = -2.0
+offset_right = 409.0
+offset_bottom = 82.0
+text = "g"
+label_settings = SubResource("LabelSettings_ec1ot")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Points" parent="." instance=ExtResource("1_vkyy5")]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 475.0
+offset_right = 264.0
+offset_bottom = 562.0
+
+[node name="Category" parent="Points" index="0"]
+offset_left = 11.0
+offset_right = 137.0
+text = "Points:"
+
+[editable path="Trash"]
+[editable path="Points"]

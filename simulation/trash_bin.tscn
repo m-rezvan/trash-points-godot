@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp53dt58qfjfg"]
+
+[ext_resource type="Script" path="res://trash_bin.gd" id="1_dt117"]
+[ext_resource type="Texture2D" uid="uid://bqnx18olxkii0" path="res://Trash Bin.png" id="1_sy72h"]
+[ext_resource type="ArrayMesh" uid="uid://cabj22cfisq5y" path="res://trash.obj" id="2_4xbpi"]
+[ext_resource type="Texture2D" uid="uid://cfu8567tbbeas" path="res://e.png" id="4_uoakt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e24v1"]
+albedo_texture = ExtResource("1_sy72h")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3h51"]
+size = Vector3(4.43923, 3.00272, 4.67184)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uh0ng"]
+height = 3.0447
+radius = 0.982746
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_dt117")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_e24v1")
+mesh = ExtResource("2_4xbpi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28552, 0)
+shape = SubResource("BoxShape3D_f3h51")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33326, 0)
+shape = SubResource("CylinderShape3D_uh0ng")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.729279, 0, 0.684216, 0, 1, 0, -0.684216, 0, -0.729279, -1.30284, 2.46664, -1.32771)
+visible = false
+texture = ExtResource("4_uoakt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
